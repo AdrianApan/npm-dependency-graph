@@ -6,10 +6,10 @@ function useDetails(packageName) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
-
-  const proxy = "https://morning-cove-30121.herokuapp.com"
-  const url = "http://registry.npmjs.org"
   
+  const proxy = process.env.REACT_APP_API_PROXY
+  const url = process.env.REACT_APP_API_URL
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,6 +33,7 @@ function useDetails(packageName) {
       }
     }
     fetchData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [packageName])
   
   return {

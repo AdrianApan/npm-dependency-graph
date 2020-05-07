@@ -14,7 +14,14 @@ NPM dependency graph search built with React, React Router, JavaScript and Seman
 
 1. Clone the repository
 2. Run `npm install`
-3. Run the app with `npm start`
+3. Create a `.env` file in the root directory with the following information
+
+```
+REACT_APP_API_URL=https://registry.npmjs.org
+REACT_APP_API_PROXY=https://cors-anywhere.herokuapp.com
+```
+
+4. Run the app with `npm start`
 
 ### Deployment
 

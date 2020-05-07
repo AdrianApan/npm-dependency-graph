@@ -13,72 +13,74 @@ function useDependencyGraph(packageName) {
   const [error, setError] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
 
-  const proxy = "https://morning-cove-30121.herokuapp.com"
-  const url = "http://registry.npmjs.org"
+  const proxy = process.env.REACT_APP_API_PROXY
+  const url = process.env.REACT_APP_API_URL
   
   useEffect(() => {
-    const loadDependencies = async (packageName) => {
-      try {
-        const initialPackage = {
-          id: packageName,
-          label: packageName,
-          title: packageName
-        }
-        const nodes = [initialPackage]
-        const edges = new Set()
-        const queue = [packageName]
-        const visited = new Set()
-    
-        while (queue.length > 0) {
-          setLoading(true)
-          setProgress(queue.length)
-          const queueItem = queue.shift()
-          const { parent, children } = await fetchDepedencies(queueItem)
-          
-          // Update visited
-          visited.add(parent)
-          
-          // For each child dependency found
-          children.forEach(child => {
-            const node = {
-              id: child,
-              label: child,
-              title: child,
-              color: randomColor()
-            }
-            
-            const edge = {
-              from: parent,
-              to: child
-            }
-    
-            // Update edges
-            edges.add(edge)
-            
-            // Unless already visited
-            if (!visited.has(child)) {
-              queue.push(child) // Push package to the queue
-              nodes.push(node) // Push node obj to nodes
-              visited.add(child) // Add to visited set
-            }
-          })
-        }
-        // Build graph from results
-        setGraph({
-          nodes: nodes,
-          edges: [...edges] // Set to Array using ES6 spread operator syntax
-        })
-
-        setLoading(false)
-      } catch(error) {
-        setError(true)
-        setErrorMsg("We cannot fetch the dependencies data. Please try again later.")
-        setLoading(false)
-      }
-    }
-    
     loadDependencies(packageName)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [packageName])
+
+  // Dependencies setup
+  const loadDependencies = async (packageName) => {
+    try {
+      const initialPackage = {
+        id: packageName,
+        label: packageName,
+        title: packageName
+      }
+      const nodes = [initialPackage]
+      const edges = new Set()
+      const queue = [packageName]
+      const visited = new Set()
+  
+      while (queue.length > 0) {
+        setLoading(true)
+        setProgress(queue.length)
+        const queueItem = queue.shift()
+        const { parent, children } = await fetchDepedencies(queueItem)
+        
+        // Update visited
+        visited.add(parent)
+        
+        // For each child dependency found
+        children.forEach(child => {
+          const node = {
+            id: child,
+            label: child,
+            title: child,
+            color: randomColor()
+          }
+          
+          const edge = {
+            from: parent,
+            to: child
+          }
+  
+          // Update edges
+          edges.add(edge)
+          
+          // Unless already visited
+          if (!visited.has(child)) {
+            queue.push(child) // Push package to the queue
+            nodes.push(node) // Push node obj to nodes
+            visited.add(child) // Add to visited set
+          }
+        })
+      }
+      // Build graph from results
+      setGraph({
+        nodes: nodes,
+        edges: [...edges] // Set to Array using ES6 spread operator syntax
+      })
+
+      setLoading(false)
+    } catch(error) {
+      setError(true)
+      setErrorMsg("We cannot fetch the dependencies data. Please try again later.")
+      setLoading(false)
+    }
+  }
 
   // API call
   const fetchDepedencies = async (packageName) => {

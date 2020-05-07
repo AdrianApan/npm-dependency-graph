@@ -11,8 +11,8 @@ function useSearch(searchTerm) {
   const [results, setResults] = useState(null)
   const [hasNextPage, setHasNextPage] = useState(true)
 
-  const proxy = "https://cors-anywhere.herokuapp.com"
-  const url = "http://registry.npmjs.org"
+  const proxy = process.env.REACT_APP_API_PROXY
+  const url = process.env.REACT_APP_API_URL
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,6 +44,7 @@ function useSearch(searchTerm) {
     if (searchTerm !== "") {
       fetchData()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm])
 
   // Infinite scroll

@@ -1,0 +1,95 @@
+@import "../../styles/_variables.scss";
+
+.search {
+  border-radius: 5px;
+
+  .search-form {
+    padding: 20px;
+
+    .search-input {
+      width: 100%;
+
+      input {
+        border-right: none;
+        font-family: $font-stack;
+        font-weight: 300;
+      }
+
+      button.search-button {
+        font-weight: 300;
+        font-family: $font-stack;
+        text-transform: lowercase;
+      }
+    }
+  }
+}
+
+.loading {
+  font-weight: 300;
+  padding: 20px 10px;
+}
+
+.stats {
+  font-size: 0.8em;
+  margin: 20px 0 0 0;
+  padding: 5px 10px;
+  font-weight: 300;
+}
+
+.results {
+  font-family: $font-stack;
+  font-weight: 300;
+}
+
+.no-results {
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+i.scroll {
+  background: $primary;
+  color: $light;
+  padding: 5px;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+  opacity: 0.85;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 768px) {
+  .search {
+
+    .search-form {
+
+      .ui.icon.input>i.icon:before {
+        margin-top: .25em;
+      }
+
+      .search-input {
+        display: initial;
+
+        input {
+          width: 100% !important;
+        }
+      
+        button.search-button {
+          width: 100%;
+          margin-top: 1em;
+          border-radius: 5px !important;
+          text-align: center;
+          display: block;
+        }
+      }
+
+      .ui.action.input:not([class*="left action"])>input {
+        border-top-right-radius: 5px !important;
+        border-top-left-radius:  5px !important;
+        border-bottom-right-radius:  5px !important;
+        border-bottom-left-radius:  5px !important;
+        border: 1px solid #dfdfdf !important;
+      }
+    }
+  }
+}

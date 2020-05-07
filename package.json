@@ -1,0 +1,56 @@
+{
+	"name": "npm-dependency-graph",
+	"version": "0.1.0",
+	"homepage": "https://adrianapan.github.io/npm-dependency-graph",
+	"private": true,
+	"dependencies": {
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.3.2",
+		"@testing-library/user-event": "^7.1.2",
+		"axios": "^0.19.2",
+		"enzyme": "^3.11.0",
+		"enzyme-adapter-react-16": "^1.15.2",
+		"lodash.debounce": "^4.0.8",
+		"node-sass": "^4.13.1",
+		"randomcolor": "^0.5.4",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
+		"react-graph-vis": "^1.0.5",
+		"react-infinite-scroll-hook": "^2.0.1",
+		"react-rainbow-components": "^1.14.1",
+		"react-router-dom": "^5.1.2",
+		"react-scripts": "3.3.1",
+		"react-scroll-up": "^1.3.3",
+		"react-test-renderer": "^16.12.0",
+		"react-vis-network": "^1.0.0",
+		"semantic-ui-css": "^2.4.1",
+		"semantic-ui-react": "^0.88.2",
+		"source-map-explorer": "^2.3.1",
+		"styled-components": "^5.0.1",
+		"superagent": "^5.2.2",
+		"uuid": "^7.0.3"
+	},
+	"scripts": {
+		"analyze": "source-map-explorer 'build/static/js/*.js'",
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {}
+}

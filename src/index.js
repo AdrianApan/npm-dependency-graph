@@ -8,8 +8,10 @@ import "semantic-ui-css/semantic.min.css"
 import App from "./components/App"
 import "./styles/index.scss"
 
+const getBasename = path => path.substr(0, path.lastIndexOf('/'))
+
 ReactDOM.render(
-  <Router>
+  <Router basename={getBasename(window.location.pathname)}>
     <App />
   </Router>,
   document.getElementById("root")

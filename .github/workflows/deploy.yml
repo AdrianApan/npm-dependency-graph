@@ -9,7 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/setup-node@v3
+          with:
+            # Version Spec of the version to use in SemVer notation.
+            # It also emits such aliases as lts, latest, nightly and canary builds
+            # Examples: 12.x, 10.15.1, >=10.15.0, lts/Hydrogen, 16-nightly, latest, node
+            node-version: '14.5.0'
         with:
           persist-credentials: false
 
@@ -21,7 +26,7 @@ jobs:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
           REACT_APP_API_PROXY: ${{ secrets.REACT_APP_API_PROXY }}
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.4.3
+        uses: JamesIves/github-pages-deploy-action@3.4.8
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to
